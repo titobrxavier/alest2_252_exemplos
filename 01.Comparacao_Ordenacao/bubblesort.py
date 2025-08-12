@@ -24,13 +24,15 @@ def bubbleSort(alist):
 #alist = [54,26,93,17,77,31,44,55,20]
 
 MAX = 10000
-data = [random.randint(0,MAX*10) for x in range(MAX)]
+for n in range(500,MAX,500):
+    data = [random.randint(0,MAX*10) for x in range(n)]
 
-start = process_time()
-bubbleSort(data)
-end = process_time()
-t = end-start
+    start = process_time()
+    bubbleSort(data)
+    end = process_time()
+    t = end-start
+    print(f"{n} {t}")
 
-print(data)
-print(f"Tempo para ordenar {MAX} elementos: {t} s")
+#print(data)
+#print(f"Tempo para ordenar {MAX} elementos: {t} s")
 

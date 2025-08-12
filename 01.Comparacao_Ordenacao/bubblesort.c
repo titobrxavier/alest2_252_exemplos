@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX 10000
+#define MAX 30000
 
 void bubblesort(int values[], int total);
 
@@ -25,13 +25,16 @@ void bubblesort(int values[], int total)
 int main()
 {
     int data[MAX];
-    for(int i=0; i<MAX; i++)
-        data[i] = rand()%(MAX*10);
-    long start = clock();
-    bubblesort(data, MAX);
-    long end = clock();
-    //for(int i=0; i<MAX; i++)
-    //    printf("%d ", data[i]);
-    //printf("\n");
-    printf("Tempo para %d elementos: %ld ns\n", MAX,(end-start));
+    for(int n=500; n<=MAX; n+=500) {
+        for(int i=0; i<n; i++)
+            data[i] = rand()%(n*10);
+        long start = clock();
+        bubblesort(data, n);
+        long end = clock();
+        float tempo = (end-start)/(float)CLOCKS_PER_SEC;
+        printf("%d %f\n", n, tempo);
+        //for(int i=0; i<n; i++)
+        //    printf("%d ", data[i]);
+        //printf("\n");
+    }
 }

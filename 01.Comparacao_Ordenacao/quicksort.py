@@ -24,13 +24,15 @@ def _quicksort(data, p, r):
         _quicksort(data, p, q-1);
         _quicksort(data, q+1, r);
 
-MAX = 10000
-data = [random.randint(0,MAX*10) for x in range(MAX)]
+MAX = 100000
+for n in range(500,MAX,500):
+    data = [random.randint(0,MAX*10) for x in range(n)]
 
-start = process_time()
-quicksort(data)
-end = process_time()
-t = end-start
+    start = process_time()
+    quicksort(data)
+    end = process_time()
+    t = end-start
+    print(f"{n} {t}")
 
-print(f"Tempo para ordenar {MAX} elementos: {t} s")
+#print(f"Tempo para ordenar {MAX} elementos: {t} s")
 

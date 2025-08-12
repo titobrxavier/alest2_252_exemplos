@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX 10000
+#define MAX 100000
 
 int helper[MAX];
 
-void mergesort(int values[], int total);
+void mergeSort(int values[], int total);
 void mergesort2(int values[], int low, int high);
 void merge(int values[], int low, int middle, int high);
 
-void mergesort(int values[], int total) {
+void mergeSort(int values[], int total) {
     mergesort2(values, 0, total-1);
 }
 
@@ -61,13 +61,16 @@ void merge(int values[], int low, int middle, int high) {
 int main()
 {
     int data[MAX];
-    for(int i=0; i<MAX; i++)
-        data[i] = rand()%(MAX*10);
-    long start = clock();
-    mergesort(data, MAX);
-    long end = clock();
+    for(int n=500; n<=MAX; n+=500) {
+        for(int i=0; i<n; i++)
+            data[i] = rand()%(MAX*10);
+        long start = clock();
+        mergeSort(data, n);
+        long end = clock();
+        float tempo = (end-start)/(float)CLOCKS_PER_SEC;
+        printf("%d %f\n", n, tempo);
+    }
     //for(int i=0; i<MAX; i++)
     //    printf("%d ", data[i]);
     //printf("\n");
-    printf("Tempo para %d elementos: %ld ns\n", MAX,(end-start));
 }
