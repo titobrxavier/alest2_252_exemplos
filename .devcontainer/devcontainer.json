@@ -1,0 +1,39 @@
+{
+  "name": "Java",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",             // <--- define JDK 21 explicitamente
+      "installMaven": false,
+      "installGradle": false
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "oracle.oracle-java",
+        "redhat.vscode-xml",
+        "redhat.java",
+        "vscjava.vscode-java-debug",
+        "ms-python.debugpy",
+        "ms-python.python",
+        "ms-vscode.cpptools",
+        "danielpinto8zz6.c-cpp-compile-run",
+        "mathematic.vscode-pdf"
+      ],
+      "settings": {
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-21",
+            "path": "/usr/lib/jvm/msopenjdk-current",
+            "default": true
+          }
+        ]
+      }
+    }
+  },
+  "postCreateCommand": "java -version"
+}
