@@ -31,7 +31,7 @@ public class MaxHeap<T extends Comparable<T>> {
     swim(size);
   }
 
-  private void sink(int k) {
+  private void sink(int k, int size) {
     while (2 * k < size) {
       int j = 2 * k;
       if (j < size-1 && v[j].compareTo(v[j + 1]) < 0)
@@ -50,12 +50,27 @@ public class MaxHeap<T extends Comparable<T>> {
       throw new UnsupportedOperationException("MaxHeap vazio!");
     T res = v[1];
     v[1] = v[size--];
-    sink(1);
+    sink(1,size);
     return res;
   }
 
   public void sort() {
       // Implemente heapsort!
+
+      // 1. Colocar o vetor em ordem de heap
+      int n = size;
+      for(int k=n/2; k>=1; k--)
+        sink(k,n);
+
+      // 2. Ordena "removendo" o maior N vezes
+      n--;
+      while(n > 1) {
+        T tmp = v[1];
+        v[1] = v[n];
+        v[n] = tmp;
+        n--;
+        sink(1,n);
+      }
   }
 
   private void print(int b, int elem, int sp) {
