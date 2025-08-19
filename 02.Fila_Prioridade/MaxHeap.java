@@ -32,9 +32,9 @@ public class MaxHeap<T extends Comparable<T>> {
   }
 
   private void sink(int k, int size) {
-    while (2 * k < size) {
+    while (2 * k <= size) {
       int j = 2 * k;
-      if (j < size-1 && v[j].compareTo(v[j + 1]) < 0)
+      if (j < size && v[j].compareTo(v[j + 1]) < 0)
         j++;
       if (v[k].compareTo(v[j])>=0)
         break;
@@ -58,12 +58,16 @@ public class MaxHeap<T extends Comparable<T>> {
       // Implemente heapsort!
 
       // 1. Colocar o vetor em ordem de heap
-      int n = size;
-      for(int k=n/2; k>=1; k--)
+      int n = size-1;
+      for(int k=n/2; k>=1; k--) {
+        //System.out.println("sink("+k+","+n+")");
         sink(k,n);
+      }
 
-      // 2. Ordena "removendo" o maior N vezes
-      n--;
+      //System.out.println("Em ordem de heap:");
+      //print();
+
+      // 2. Ordena "removendo" o maior N-1 vezes (pois o último já vai estar na 1a. posição!)
       while(n > 1) {
         T tmp = v[1];
         v[1] = v[n];
@@ -77,7 +81,7 @@ public class MaxHeap<T extends Comparable<T>> {
     int i, j;
 
     System.out.println("");
-    for (j = 0; j <= size; j++)
+    for (j = 0; j < size; j++)
       System.out.print(v[j] + " ");
     System.out.println("");
 
@@ -85,7 +89,7 @@ public class MaxHeap<T extends Comparable<T>> {
       for (j = 0; j <= sp / 2; j++)
         System.out.print(" ");
       for (i = b; i < b + elem; i++) {
-        if (i == size+1)
+        if (i == size)
           return;
         System.out.print(v[i]);
         for (j = 0; j < sp; j++)
