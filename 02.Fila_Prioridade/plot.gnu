@@ -14,5 +14,5 @@
 set term pdf
 set output "compara-sorts.pdf"
 # Assumindo que os nomes dos arquivos são esses, caso não sejam... altere à vontade!
-plot "merge_c.txt" with lines title "Merge", "quick_c.txt" with lines title "Quick", "heap_c.txt" with lines title "Heap"
+plot "merge_python.txt" with lines title "Merge", "quick_python.txt" with lines title "Quick", "heap_python.txt" with lines title "Heap"
 
