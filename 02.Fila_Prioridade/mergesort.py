@@ -6,60 +6,57 @@
 import random
 from time import process_time
 
-def mergeSort(alist):
+class Mergesort:
 
-    #print("Splitting ",alist)
+    def sort(self, alist):
 
-    if len(alist) > 1:
+        #print("Splitting ",alist)
+        if len(alist) > 1:
 
-        mid = len(alist) // 2   # Div. inteira
-        lefthalf = alist[:mid]  # slicing: lista até mid-1
-        righthalf = alist[mid:] # slicing: lista de mid ao final
+            mid = len(alist) // 2   # Div. inteira
+            lefthalf = alist[:mid]  # slicing: lista até mid-1
+            righthalf = alist[mid:] # slicing: lista de mid ao final
 
-        mergeSort(lefthalf)
-        mergeSort(righthalf)
+            self.sort(lefthalf)
+            self.sort(righthalf)
 
-        i = 0
-        j = 0
-        k = 0
+            i = 0
+            j = 0
+            k = 0
 
-        while i < len(lefthalf) and j < len(righthalf):
+            while i < len(lefthalf) and j < len(righthalf):
 
-            if lefthalf[i] < righthalf[j]:
+                if lefthalf[i] < righthalf[j]:
+                    alist[k] = lefthalf[i]
+                    i += 1
+                else:
+                    alist[k] = righthalf[j]
+                    j += 1
+                k += 1
+
+            while i < len(lefthalf):
                 alist[k] = lefthalf[i]
                 i += 1
-            else:
+                k += 1
+
+            while j < len(righthalf):
                 alist[k] = righthalf[j]
                 j += 1
-            k += 1
+                k += 1
 
-        while i < len(lefthalf):
-            alist[k] = lefthalf[i]
-            i += 1
-            k += 1
+if __name__ == "__main__":
 
-        while j < len(righthalf):
-            alist[k] = righthalf[j]
-            j += 1
-            k += 1
+    MAX = 100000
+    for n in range(500,MAX,500):
+        data = [random.randint(0,MAX*10) for x in range(n)]
 
-    #print("Merging ",alist)
+        ms = Mergesort()
 
-#alist = []
-#for x in range(1000):
-#    alist.append(random.randint(0,10000))
+        start = process_time()
+        ms.sort(data)
+        end = process_time()
+        t = end-start
+        print(f"{n} {t}")
 
-#alist = [54,26,93,17,77,31,44,55,20]
-
-MAX = 100000
-for n in range(500,MAX,500):
-    data = [random.randint(0,MAX*10) for x in range(n)]
-
-    start = process_time()
-    mergeSort(data)
-    end = process_time()
-    t = end-start
-    print(f"{n} {t}")
-
-#print(f"Tempo para ordenar {MAX} elementos: {t} s")
+    #print(f"Tempo para ordenar {MAX} elementos: {t} s")
 
