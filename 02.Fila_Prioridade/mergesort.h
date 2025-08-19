@@ -7,7 +7,7 @@ private:
 
     T* helper;
 
-    void sort(int values[], int low, int high) {
+    void sort(T values[], int low, int high) {
         // Check if low is smaller then high, if not then the array is sorted
         if (low < high) {
             // Get the index of the element which is in the middle
@@ -21,7 +21,7 @@ private:
         }
     }
 
-    void merge(int values[], int low, int middle, int high) {
+    void merge(T values[], int low, int middle, int high) {
         // Copy both parts into the helper array
         for (int i = low; i <= high; i++) {
             helper[i] = values[i];
@@ -51,7 +51,7 @@ private:
     }
 
 public:
-    void sort(int values[], int total) {
+    void sort(T values[], int total) {
         helper = new int[total];
         sort(values, 0, total-1);
         delete helper;
