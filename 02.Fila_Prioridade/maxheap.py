@@ -17,25 +17,25 @@ class MaxHeap:
 
     def swim(self, k):
         while k > 1 and self.heap[k//2] < self.heap[k]:
-            print("swap",self.heap[k],"and",self.heap[k//2])
+            # print("swap",self.heap[k],"and",self.heap[k//2])
             self.heap[k], self.heap[k//2] = self.heap[k//2], self.heap[k]
             k = k // 2
 
-    def sink(self, k):
-      N = len(self.heap)-1
+    def sink(self, k, N):
+      #N = len(self.heap)-1
       while 2*k <= N:
         j = 2*k
         if j < N and self.heap[j]<self.heap[j+1]:
           j += 1
         if self.heap[k] >= self.heap[j]:
           break
-        print("swap",self.heap[k],"and",self.heap[j])
+        # print("swap",self.heap[k],"and",self.heap[j])
         self.heap[k], self.heap[j] = self.heap[j], self.heap[k]
         k = j
  
     def get(self):
         res = self.heap[1]
-        print("move",self.heap[len(self.heap)-1],"to top")
+        #print("move",self.heap[len(self.heap)-1],"to top")
         self.heap[1] = self.heap[len(self.heap)-1]
         self.heap.pop()
         self.sink(1)
@@ -62,7 +62,17 @@ class MaxHeap:
 
     def sort(self):
         # Implemente heapsort!
-        pass
+        #
+        n = len(self.heap)-1;
+        for k in range(n//2, 0, -1):
+            #print(f"sink({k}, {n})")
+            self.sink(k,n)
+
+        # 2. Ordena "removendo" o maior N-1 vezes (pois o último já vai estar na 1a. posição!)
+        while n > 1:
+            self.heap[1], self.heap[n] = self.heap[n], self.heap[1]
+            n-=1
+            self.sink(1,n)
 
 def main():
 
