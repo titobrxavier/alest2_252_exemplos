@@ -8,6 +8,7 @@ class MaxHeap:
     def __init__(self, *args):
         self.heap = [ ' ' ]
         if len(args) > 0:
+            # Se receber uma lista como parâmetro, inclui os elementos na lista (usar no sort)
             self.heap += args[0]
 
     def add(self, x):
@@ -59,7 +60,7 @@ class MaxHeap:
     def getData(self): # retorna o conteúdo do heap como uma lista - exceto a posição 0
         return self.heap[1:]
 
-    def sort(self, data):
+    def sort(self):
         # Implemente heapsort!
         pass
 

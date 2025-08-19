@@ -6,7 +6,7 @@ public class MaxHeap<T extends Comparable<T>> {
 
   @SuppressWarnings("unchecked")
   public MaxHeap(int tam) {
-    size = 1;
+    size = 0;
     v = (T[]) new Comparable[tam];
   }
 
@@ -26,15 +26,15 @@ public class MaxHeap<T extends Comparable<T>> {
   }
 
   public void put(T data) {
+    size++;
     v[size] = data;
     swim(size);
-    size++;
   }
 
   private void sink(int k) {
-    while (2 * k <= size) {
+    while (2 * k < size) {
       int j = 2 * k;
-      if (j < size && v[j].compareTo(v[j + 1]) < 0)
+      if (j < size-1 && v[j].compareTo(v[j + 1]) < 0)
         j++;
       if (v[k].compareTo(v[j])>=0)
         break;
@@ -46,15 +46,15 @@ public class MaxHeap<T extends Comparable<T>> {
   }
 
   public T get() {
-    if (size == 1)
+    if (size == 0)
       throw new UnsupportedOperationException("MaxHeap vazio!");
     T res = v[1];
-    v[1] = v[--size];
+    v[1] = v[size--];
     sink(1);
     return res;
   }
 
-  public void sort(T data[]) {
+  public void sort() {
       // Implemente heapsort!
   }
 
@@ -62,7 +62,7 @@ public class MaxHeap<T extends Comparable<T>> {
     int i, j;
 
     System.out.println("");
-    for (j = 0; j < size; j++)
+    for (j = 0; j <= size; j++)
       System.out.print(v[j] + " ");
     System.out.println("");
 
@@ -70,7 +70,7 @@ public class MaxHeap<T extends Comparable<T>> {
       for (j = 0; j <= sp / 2; j++)
         System.out.print(" ");
       for (i = b; i < b + elem; i++) {
-        if (i == size)
+        if (i == size+1)
           return;
         System.out.print(v[i]);
         for (j = 0; j < sp; j++)
@@ -90,7 +90,7 @@ public class MaxHeap<T extends Comparable<T>> {
   }
 
   public void printArray() {
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i <= size; i++)
       System.out.print(v[i] + " ");
     System.out.println();
   }

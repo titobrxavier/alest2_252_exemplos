@@ -19,7 +19,6 @@ int main()
         QuickSort<int> qs;
         //ms.sort(data, n);
         qs.sort(data, n);
-        //quicksort(data, n);
         long end = clock();
         float tempo = (end-start)/(float)CLOCKS_PER_SEC;
         printf("%d %f\n", n, tempo);

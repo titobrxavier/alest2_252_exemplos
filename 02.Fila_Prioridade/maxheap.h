@@ -39,6 +39,9 @@ public:
         heap.push_back(T()); // Placeholder for index 0
     }
 
+    // Crie um construtor que receba um vetor
+    // (para usar no sort)
+
     void put(T data) {
         heap.push_back(data);
         swim(heap.size() - 1);
@@ -54,7 +57,7 @@ public:
         return res;
     }
 
-    void sort(T* data, int n) {
+    void sort() {
         // implemente heapsort!
     }
 

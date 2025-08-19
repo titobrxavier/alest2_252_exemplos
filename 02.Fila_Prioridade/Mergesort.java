@@ -1,15 +1,16 @@
 import java.util.Random;
 
-public class Mergesort {
-    private int[] numbers;
-    private int[] helper;
+public class Mergesort<T extends Comparable<T>> {
+    private T[] numbers;
+    private T[] helper;
 
     private int number;
 
-    public void sort(int[] values) {
+    @SuppressWarnings("unchecked")
+    public void sort(T[] values) {
         this.numbers = values;
         number = values.length;
-        this.helper = new int[number];
+        this.helper = (T[]) new Comparable[number];
         mergesort(0, number - 1);
     }
 
@@ -40,7 +41,7 @@ public class Mergesort {
         // Copy the smallest values from either the left or the right side back
         // to the original array
         while (i <= middle && j <= high) {
-            if (helper[i] <= helper[j]) {
+            if (helper[i].compareTo(helper[j]) <=0) {
                 numbers[k] = helper[i];
                 i++;
             } else {
@@ -61,11 +62,11 @@ public class Mergesort {
         Random r = new Random();
         int MAX = 100000;
         for(int n=500; n<=MAX; n+=500) {
-            int[] data = new int[n];
+            Integer[] data = new Integer[n];
             for(int i=0; i<data.length; i++)
                 data[i] = r.nextInt(data.length*10);
 
-            Mergesort ms = new Mergesort();
+            Mergesort<Integer> ms = new Mergesort<>();
             long start = System.nanoTime();
             ms.sort(data);
             long end = System.nanoTime();
