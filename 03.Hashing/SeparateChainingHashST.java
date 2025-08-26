@@ -84,8 +84,8 @@ public class SeparateChainingHashST<Key, Value> {
     // resize the hash table to have the given number of chains,
     // rehashing all of the keys
     private void resize(int chains) {
-        System.out.println("Occupancy: " + n + " elements: " + m + " chains - load factor: " + (double)n / m);
-        System.out.println("Resizing to " + chains + " chains");
+        //System.out.println("Occupancy: " + n + " elements: " + m + " chains - load factor: " + (double)n / m);
+        //System.out.println("Resizing to " + chains + " chains");
         SeparateChainingHashST<Key, Value> temp = new SeparateChainingHashST<Key, Value>(chains);
         for (int i = 0; i < m; i++) {
             for (Key key : st[i].keys()) {

@@ -53,6 +53,9 @@ class LinearProbingHashTable:
         if self.total_count > self._get_threshold():
             self._expand_and_reallocate()
         return
+
+    def getKeys(self):
+        return self.hash_table
     
     def insert(self, key, value):
         hash_idx = self._hash_func(key)

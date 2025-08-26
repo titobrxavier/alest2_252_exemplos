@@ -125,8 +125,8 @@ public class LinearProbingHashST<Key, Value> {
 
     // resizes the hash table to the given capacity by re-hashing all of the keys
     private void resize(int capacity) {
-        System.out.println("Occupancy: " + n + " elements - load factor: " + (double)n / m);
-        System.out.println("Resizing to " + capacity + " capacity");
+        //System.out.println("Occupancy: " + n + " elements - load factor: " + (double)n / m);
+        //System.out.println("Resizing to " + capacity + " capacity");
         LinearProbingHashST<Key, Value> temp = new LinearProbingHashST<Key, Value>(capacity);
         for (int i = 0; i < m; i++) {
             if (keys[i] != null) {
