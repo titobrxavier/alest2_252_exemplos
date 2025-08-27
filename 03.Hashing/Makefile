@@ -23,7 +23,7 @@ app_compara: $(app_compara_src) $(INCLUDES)
 
 # Clean up build files
 clean:
-	rm -f $(TARGET)
+	rm -f app_hashmap app_compara
 
 # Phony targets
 .PHONY: all clean

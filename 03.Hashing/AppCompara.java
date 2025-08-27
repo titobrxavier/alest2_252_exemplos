@@ -5,14 +5,16 @@ public class AppCompara {
 
         SeparateChainingHashST<String, Integer> ht = new SeparateChainingHashST<>();
         //LinearProbingHashST<String, Integer> ht = new LinearProbingHashST<>();
-        In arq = new In("DomCasmurro_utf8.txt");
+        //In arq = new In("DomCasmurro_utf8.txt");
+        In arq = new In("mobydick.txt");
         String[] words = arq.readAllStrings();
         arq.close();
 
         long start = System.nanoTime();
         for (String word : words) {
             //System.out.println(word);
-            word = word.toLowerCase();
+            // Transforma para minúsculas e remove a pontuação
+            word = word.toLowerCase().replaceAll("[^a-zA-Z]", "");
             if(!ht.containsKey(word))
                 ht.put(word, 1);
             ht.put(word, ht.get(word)+1);

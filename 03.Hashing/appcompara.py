@@ -15,6 +15,8 @@ if __name__ == '__main__':
             linewords = [x.lower() for x in line.split()]
             #print(linewords)
             for word in linewords:
+                # Remove pontuação
+                word = ''.join(char for char in word if char.isalnum())
                 if word not in ht:
                     #print("New word: ",word)
                     ht.insert(word, 1)

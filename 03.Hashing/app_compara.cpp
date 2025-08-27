@@ -1,37 +1,42 @@
-#include <string>
-#include <iostream>
+#include <algorithm>
 #include <fstream>
-#include "separatechaining_hashtable.h"
+#include <iostream>
+#include <string>
+#include <time.h>
+
 #include "linearprobing_hashtable.h"
+#include "separatechaining_hashtable.h"
 
 using namespace std;
 
 int main() {
     // Inicializa a tabela hash
-    SeparateChainingHashTable<string, string> ht;
-    //LinearProbingHashTable<string, string> ht;
+    LinearProbingHashTable<string, int> ht;
+    //SeparateChainingHashTable<string, int> ht;
 
-    ifstream arq("DomCasmurro_utf8.txt");
+    // Este é BEM maior
+    ifstream arq("mobydick.txt");
 
     string word;
-    while(arq >> word) {
-        cout << word << endl;
+    long start = clock();
+    while (arq >> word) {
+        word = word.substr(0, word.find_first_of(".,;:!?\"'()[]{}<>")); // remove pontuação
+        // Jeito "simples" de transformar em minúsculas...
+        std::transform(word.begin(), word.end(), word.begin(), [](unsigned char c) {
+            return static_cast<char>(std::tolower(c));
+        });                                                            // 
+        if (!ht.contains(word)) {
+            //cout << "New word: " << word << endl;
+            ht.insert(word, 1);
+        }
+        ht.insert(word, ht.get(word) + 1);
     }
+    long end = clock();
+    double elapsed = (end - start) / (double)CLOCKS_PER_SEC;
 
     arq.close();
 
-    // Insere alguns itens chave-valor
-    ht.insert("key1", "value1");
-    ht.insert("key2", "value2");
-    ht.insert("key3", "value3");
-
-    // Recupera e exibe os valores
-    cout << ht.get("key1") << endl;
-    cout << ht.get("key2") << endl;
-    cout << ht.get("key3") << endl;
-
-    // Verifica se uma chave existe
-    cout << ht.contains("key1") << endl;
-
+    cout << "Total: " << ht.size() << " palavras distintas." << endl;
+    cout << "Tempo gasto: " << elapsed << " segundos." << endl;
     return 0;
 }
