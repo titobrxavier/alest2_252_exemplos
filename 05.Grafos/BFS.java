@@ -90,12 +90,12 @@ public class BFS {
         for(String v: g.getVerts())
         {
             System.out.print(v+": ");
-            for(String w: bfs.pathTo(v))
-                System.out.print(w+" ");
-            if(bfs.hasPathTo(v))
-                System.out.println(" - dist: "+bfs.distTo(v));
-            else
-                System.out.println();
+            if(bfs.hasPathTo(v)) {
+                for(String w: bfs.pathTo(v))
+                    System.out.print(w+" ");
+                System.out.print("("+bfs.distTo(v)+")");
+            }
+            System.out.println();
         }
     }
 }

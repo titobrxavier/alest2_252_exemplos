@@ -1,6 +1,6 @@
 from graph import Graph
 
-class DepthFirstSearch:
+class DFS:
     def __init__(self, g, s):
         self.s = s
         self.marked = {}
@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
     g = Graph("exemplos/tinyG.txt")
 
-    dfs = DepthFirstSearch(g, "0")
+    dfs = DFS(g, "0")
 
     for v in g.getVerts():
         print(f"{v}: ", end="")
