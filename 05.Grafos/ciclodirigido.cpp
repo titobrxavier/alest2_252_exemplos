@@ -1,4 +1,4 @@
-#include "directedcycle.h"
+#include "ciclodirigido.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>

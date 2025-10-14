@@ -1,6 +1,6 @@
 CPPFLAGS = -Wall -g -std=c++17   # Opções do compilador: todos warnings e debug info
 
-all: appgraph appdigraph appdfs appbfs
+all: appgraph appdigraph appdfs appbfs appciclonaodirigido appciclodirigido
 
 # classe Graph
 appgraph = appgraph
@@ -22,6 +22,16 @@ appbfs = appbfs
 appbfs_src = appbfs.cpp graph.cpp bfs.cpp
 appbfs_obj = $(appbfs_src:.cpp=.o)
 
+# Ciclos nao dirigidos
+appciclonaodirigido = appciclonaodirigido
+appciclonaodirigido_src = appciclonaodirigido.cpp ciclonaodirigido.cpp graph.cpp
+appciclonaodirigido_obj = $(appciclonaodirigido_src:.cpp=.o)
+
+# Ciclos dirigidos
+appciclodirigido = appciclodirigido
+appciclodirigido_src = appciclodirigido.cpp ciclodirigido.cpp digraph.cpp graph.cpp
+appciclodirigido_obj = $(appciclodirigido_src:.cpp=.o)
+
 $(appgraph): $(appgraph_obj)
 	g++ $(CPPFLAGS) $(appgraph_obj) -o $@
 
@@ -34,10 +44,18 @@ $(appdfs): $(appdfs_obj)
 $(appbfs): $(appbfs_obj)
 	g++ $(CPPFLAGS) $(appbfs_obj) -o $@
 
+$(appciclonaodirigido): $(appciclonaodirigido_obj)
+	g++ $(CPPFLAGS) $(appciclonaodirigido_obj) -o $@
+
+$(appciclodirigido): $(appciclodirigido_obj)
+	g++ $(CPPFLAGS) $(appciclodirigido_obj) -o $@
+
 clean:
 	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) \
-		     $(appdfs_obj) $(appdfs) \
-			 $(appbfs_obj) $(appbfs)
+		   $(appdfs_obj) $(appdfs) \
+			 $(appbfs_obj) $(appbfs) \
+			 $(appciclonaodirigido_obj) $(appciclonaodirigido) \
+			 $(appciclodirigido_obj) $(appciclodirigido)
 
 
 	   	

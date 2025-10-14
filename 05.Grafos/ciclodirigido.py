@@ -8,7 +8,7 @@ class Mark(Enum):
     BLACK = 2
 
 
-class DirectedCycle:
+class CicloDirigido:
     def __init__(self, g):
         self.g = g
         self.marked = {}
@@ -42,15 +42,16 @@ if __name__ == "__main__":
     # g = Digraph("exemplos/tinyG.txt")
 
     g = Digraph()
-    g.addEdge("0", "1")
-    g.addEdge("1", "3")
-    g.addEdge("3", "4")
-    # g.addEdge("3", "2")
-    g.addEdge("5", "6")
-    g.addEdge("6", "7")
-    g.addEdge("7", "5")
+    g.addEdge("1","2")
+    g.addEdge("2","4")
+    g.addEdge("4","3")
+    # g.addEdge("3","1") # retirando para não ter ciclo nesta parte
+    g.addEdge("4","5")
+    g.addEdge("6","7")
+    g.addEdge("7","8")
+    g.addEdge("8","6")
 
-    dc = DirectedCycle(g)
+    dc = CicloDirigido(g)
 
     print("Tem ciclo?", dc.hasCycle)
     print()
